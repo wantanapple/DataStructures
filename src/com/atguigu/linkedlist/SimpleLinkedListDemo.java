@@ -5,6 +5,8 @@ import jdk.nashorn.internal.runtime.regexp.JoniRegExp;
 
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Source;
+import java.util.Scanner;
+import java.util.Stack;
 
 public class SimpleLinkedListDemo {
 
@@ -45,7 +47,105 @@ public class SimpleLinkedListDemo {
         simpleLinkedList.del(4);
         System.out.println("删除后的链表为");
         simpleLinkedList.list();
+
+        System.out.println("链表的有效节点个数为：" + getLength(simpleLinkedList.getHeadNode()));
+
+        int k = 1;
+        System.out.println("查询倒数第" + k  + "个节点");
+        System.out.println(findLastIndexNode(k, simpleLinkedList.getHeadNode()));
+
+        System.out.println("反转后的链表为：");
+        reverseList(simpleLinkedList.getHeadNode());
+        simpleLinkedList.list();
+
+        System.out.println("从尾到头打印单链表");
+        reverseListPrint(simpleLinkedList.getHeadNode());
+
     }
+
+    //获取链表的节点个数（不包含头节点）
+    public static int getLength(HeroNode headNode) {
+        if (headNode.next == null) {
+            return 0;
+        }
+
+        HeroNode temp = headNode.next;
+        int length = 0;
+        while (temp != null) {
+            length++;
+            temp = temp.next;
+        }
+
+        return length;
+
+    }
+
+    //查找链表中倒数第k个节点(头节点不计入)
+    public static HeroNode findLastIndexNode(int index, HeroNode headNode) {
+        if (headNode.next == null) {
+            return null;
+        }
+
+        //获取节点的个数
+        int length = getLength(headNode);
+        //对index进行校验
+        if (index <= 0 || index > length) {
+            return null;
+        }
+
+        //遍历查找
+        HeroNode next = headNode.next;
+        for (int i = 0; i < (length - index); i++) {
+            next = next.next;
+        }
+
+        return next;
+
+    }
+
+    //单链表反转  使用头插法
+    public static void reverseList(HeroNode headNode) {
+        //将原链表的节点一个个拆开，定义一个新链表，改变其指针
+        if (headNode == null || headNode.next == null) {
+            return;
+        }
+
+        HeroNode cur = headNode.next;
+        HeroNode reverseNode = new HeroNode(0, "", "");
+        while (cur != null) {
+            HeroNode next = cur.next;
+            //当前节点指向反转链表的最前端
+            cur.next = reverseNode.next;
+            //头节点指向当前节点
+            reverseNode.next = cur;
+            //当前节点后移
+            cur = next;
+        }
+
+        headNode.next = reverseNode.next;
+
+    }
+
+    //从尾到头打印单链表（使用栈stack进行实现）
+    public static void reverseListPrint(HeroNode headNode) {
+        if (headNode.next == null) {
+            return;
+        }
+
+        Stack<HeroNode> heroNodeStack = new Stack<>();
+        HeroNode cur = headNode.next;
+        while (cur != null) {
+            //入栈
+            heroNodeStack.push(cur);
+            cur = cur.next;
+        }
+
+        while (heroNodeStack.size() > 0) {
+            //出栈
+            System.out.println(heroNodeStack.pop());
+        }
+    }
+
 }
 
 
@@ -53,9 +153,12 @@ public class SimpleLinkedListDemo {
  * 链表的实现
  */
 class SimpleLinkedList {
-
     //链表的头节点
     private HeroNode headNode = new HeroNode(0, "", "");
+
+    public HeroNode getHeadNode() {
+        return headNode;
+    }
 
     //添加节点到链表
     public void add(HeroNode heroNode) {
@@ -93,7 +196,7 @@ class SimpleLinkedList {
             temp = temp.next;
         }
         if (flag) {
-            System.out.printf("存在相同节点%d~~~",heroNode.no);
+            System.out.printf("存在相同节点%d~~~", heroNode.no);
         } else {
             heroNode.next = temp.next;
             temp.next = heroNode;
@@ -124,7 +227,7 @@ class SimpleLinkedList {
         if (flag) {
             temp.name = heroNode.name;
             temp.no = heroNode.no;
-        }else {
+        } else {
             System.out.printf("不存在编号为 %d 的节点～～～", heroNode.no);
         }
     }
@@ -157,7 +260,6 @@ class SimpleLinkedList {
     }
 
 
-
     //遍历所有节点
     public void list() {
         if (headNode.next == null) {
@@ -176,7 +278,6 @@ class SimpleLinkedList {
         }
 
     }
-
 
 }
 
