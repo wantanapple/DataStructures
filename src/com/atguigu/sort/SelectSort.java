@@ -21,7 +21,7 @@ public class SelectSort {
         long s1 = Instant.now().toEpochMilli();
         sort(arr);
         long s2 = Instant.now().toEpochMilli();
-        System.out.println("冒泡排序耗时：" + (s2 - s1) + "ms");
+        System.out.println("选择排序耗时：" + (s2 - s1) + "ms");
 
         /**
         //选择排序过程--遍历n-1次，每次找到数组中最值依次放在数组前面
@@ -83,8 +83,8 @@ public class SelectSort {
         System.out.println(Arrays.toString(arr));
         **/
 
-        System.out.println("排序后的结果：");
-        System.out.println(Arrays.toString(arr));
+//        System.out.println("排序后的结果：");
+//        System.out.println(Arrays.toString(arr));
 
 
 

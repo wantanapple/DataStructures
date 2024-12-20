@@ -64,8 +64,8 @@ public class BobbleSort {
 
         } **/
 
-        System.out.println("排序后的结果：");
-        System.out.println(Arrays.toString(arr));
+//        System.out.println("排序后的结果：");
+//        System.out.println(Arrays.toString(arr));
     }
 
     public static void sort(int[] arr) {
