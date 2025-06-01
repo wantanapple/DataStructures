@@ -68,7 +68,7 @@ public class InsertSort {
     }
 
 
-    public static void sort(int[] arr) {
+    private static void sort(int[] arr) {
         //从1开始  因为要插入的数据第一个索引为1
         for (int i = 1; i < arr.length; i++) {
             //获取要插入的数据

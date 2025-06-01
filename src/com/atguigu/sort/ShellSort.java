@@ -101,7 +101,7 @@ public class ShellSort {
      * 希尔排序（交换法）
      * @param arr
      */
-    public static void sort(int[] arr) {
+    private static void sort(int[] arr) {
         int step = arr.length / 2;
 
         while (step != 0) {
@@ -125,7 +125,7 @@ public class ShellSort {
      * 希尔排序（移位法）
      * @param arr
      */
-    public static void shellSort(int[] arr) {
+    private static void shellSort(int[] arr) {
         for (int step = arr.length / 2; step > 0 ; step /= 2) {
 
             //有几组就比较几次

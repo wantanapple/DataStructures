@@ -68,7 +68,7 @@ public class BobbleSort {
 //        System.out.println(Arrays.toString(arr));
     }
 
-    public static void sort(int[] arr) {
+    private static void sort(int[] arr) {
 
         int temp = 0;
         //用于标识某一躺排序是否发生数据交换

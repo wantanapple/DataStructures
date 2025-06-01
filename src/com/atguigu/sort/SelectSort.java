@@ -91,7 +91,7 @@ public class SelectSort {
 
     }
 
-    public static void sort(int[] arr) {
+    private static void sort(int[] arr) {
         for (int i = 0; i < arr.length - 1; i++) {
             int min = arr[i];
             int minIndex = i;

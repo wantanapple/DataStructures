@@ -20,10 +20,10 @@ public class QuickSort {
         sort(arr,0,arr.length -1);
         long s2 = Instant.now().toEpochMilli();
         System.out.println("选择排序耗时：" + (s2 - s1) + "ms");
-        System.out.println(Arrays.toString(arr));
+//        System.out.println(Arrays.toString(arr));
     }
 
-    public static void sort(int[] arr, int l, int r) {
+    private static void sort(int[] arr, int l, int r) {
         //1、第一次排序触发说明数组只有一个值；2、最左或最右序列只有一个值的情况；
         //3、最左或最右序列索引重合的情况
         if (l >= r){
